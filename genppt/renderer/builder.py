@@ -94,5 +94,5 @@ class PresentationBuilder:
             self._add_speaker_notes(slide, spec.speaker_notes)
 
         prs.save(str(out))
-        logger.info(f"Saved → {out}")
+        logger.info(f"Saved -> {out}")
         return str(out)

@@ -32,7 +32,7 @@ class ImageFetcher:
                 ct = resp.headers.get("content-type", "image/jpeg")
                 return _cache.put(url, resp.content, ct)
         except Exception as e:
-            logger.warning(f"Download failed [{url}]: {e}")
+            logger.warning(f"Download failed ({url}): {e}")
         return None
 
     async def fetch_one(self, query: str, client: httpx.AsyncClient) -> Optional[Path]:

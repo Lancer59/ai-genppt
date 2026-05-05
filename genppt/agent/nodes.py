@@ -37,7 +37,7 @@ Guidelines:
 
 def plan_slides(state: AgentState) -> AgentState:
     """Node 1 — LLM generates a structured SlideOutline."""
-    llm = get_llm(temperature=0.7)
+    llm = get_llm(temperature=1)
     structured_llm = llm.with_structured_output(SlideOutline)
 
     context_block = ""
@@ -53,7 +53,7 @@ def plan_slides(state: AgentState) -> AgentState:
         context_block=context_block,
     )
 
-    logger.info("Calling LLM to plan slides…")
+    logger.info("Calling LLM to plan slides...")
     outline: SlideOutline = structured_llm.invoke(prompt)
     logger.info(f"LLM planned {len(outline.slides)} slides")
     return {**state, "outline": outline}
@@ -86,7 +86,7 @@ async def _fetch_all_assets(
 def fetch_assets(state: AgentState) -> AgentState:
     """Node 2 — Fetch images + icons concurrently (asyncio.gather inside)."""
     outline = state["outline"]
-    logger.info("Fetching images and icons…")
+    logger.info("Fetching images and icons...")
     image_paths, icon_paths = asyncio.run(_fetch_all_assets(outline))
     logger.info(
         f"Fetched {len(image_paths)} images, resolved {len(icon_paths)} icons"
@@ -102,7 +102,7 @@ def build_pptx(state: AgentState) -> AgentState:
     )
 
     output_path = state.get("output_path", "output/presentation.pptx")
-    logger.info(f"Building PPTX → {output_path}")
+    logger.info(f"Building PPTX -> {output_path}")
 
     pptx_path = builder.build(
         outline=state["outline"],

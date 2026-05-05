@@ -13,8 +13,8 @@ class Settings(BaseSettings):
     # ── Azure OpenAI ────────────────────────────────────────────────────────
     azure_openai_api_key: Optional[str] = None
     azure_openai_endpoint: Optional[str] = None
-    azure_openai_deployment_name: Optional[str] = "gpt-4o"
-    azure_openai_api_version: str = "2024-02-01"
+    azure_openai_deployment_name: Optional[str] = "gpt-5.3-chat"
+    azure_openai_api_version: str = "2024-08-01-preview"
 
     # ── Generic OpenAI-compatible ───────────────────────────────────────────
     openai_base_url: Optional[str] = None
